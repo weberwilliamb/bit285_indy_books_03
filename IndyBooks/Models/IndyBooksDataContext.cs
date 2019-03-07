@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace IndyBooks.Models
@@ -22,7 +23,7 @@ namespace IndyBooks.Models
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");
         }
-
+                
         //On Visual Studio for Mac ONLY: use the references
         //TODO: For Mac Users ONLY: follow the references to get Docker setup and uncomment line 23 below
         // - https://www.ciclosoftware.com/2018/03/14/sql-server-with-net-core-and-entityframework-on-mac/

@@ -13,19 +13,40 @@ namespace IndyBooks.Controllers
     {
         private IndyBooksDataContext _db;
         public AdminController(IndyBooksDataContext db) { _db = db; }
-
+        
         /***
          * CREATE
          */
         [HttpGet]
         public IActionResult CreateBook()
         {
-            return View("AddBook");
+            AddBookViewModel AddVM = new AddBookViewModel();
+            AddVM.WritersList = _db.Writers.ToList();
+            return View("AddBook", AddVM);
         }
         [HttpPost]
         public IActionResult CreateBook(AddBookViewModel newBook)
         {
             //TODO: Build the Author and the Book given the newBook data. Add to DbSets; SaveChanges
+
+            Writer author = new Writer();
+            Book book = new Book();
+
+            if (newBook.Name != null)
+            {
+                author.Name = newBook.Name;
+            }
+            else
+            {
+                author = _db.Writers.Single(w => w.Id == newBook.AuthorId);
+            }
+            book.Author = author;
+            book.Price = newBook.Price;
+            book.SKU = newBook.SKU;
+            book.Title = newBook.Title;
+            _db.Books.Add(book);
+            _db.SaveChanges();
+
 
 
             //Shows the new book using the Search Listing 
@@ -38,7 +59,7 @@ namespace IndyBooks.Controllers
         public IActionResult Index()
         {
             //TODO: Use lambda methods as described by the variable name
-            var allBooksWithAuthorsOrderedbySKU = _db.Books;
+            var allBooksWithAuthorsOrderedbySKU = _db.Books.Include(a => a.Author).OrderBy(s => s.SKU);
             return View("SearchResults", allBooksWithAuthorsOrderedbySKU);
         }
         /***
