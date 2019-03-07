@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            Actions
+            Action
         </th>
     </tr>
 
@@ -44,9 +44,11 @@
             <td class="rightedge">
                 $@book.Price
             </td>
-            <td>
+            <td class="rightedge">
+                <!-- TODO: Note how the book Id is set into each "Remove" link in the list -->
                 <a asp-action="DeleteBook" asp-controller="Admin"
-                   asp-route-id="@book.Id">Remove</a>
+                   asp-route-id="@book.Id">Remove</a> | 
+                <!-- TODO: BONUS: Add an "Update action link here-->
             </td>
         </tr>
     }

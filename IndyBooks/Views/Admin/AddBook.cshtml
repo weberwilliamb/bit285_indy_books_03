@@ -10,6 +10,16 @@
         <label asp-for="@Model.Title"></label>
         <input asp-for="@Model.Title" />
     </div>
-    <!-- TODO: Add the rest of the input fields needed for a new Book-->
-    <input type="submit" value="Submit"/>
+    <div>
+        <label asp-for="@Model.Name"></label>
+        <select asp-for="AuthorId"
+                asp-items="@(new SelectList(Model.WritersList,"Id","Name"))">
+            <option>Please select one</option>
+        </select>
+        OR enter new Author: <input asp-for="@Model.Name" />
+    </div>
+    <!-- TODO: Add the rest of the label and input fields needed for a Book-->
+
+
+    <input type="submit" value="Submit" />
 </form>

@@ -29,7 +29,7 @@ namespace IndyBooks.Models
         // - https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-2017
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost,1433; Database=IndyBooks;User=SA; Password=Pa$$word!");
+            //optionsBuilder.UseSqlServer("Server=localhost,1433; Database=IndyBooks;User=SA; Password=Pa$$word!");
         }
     }
 }

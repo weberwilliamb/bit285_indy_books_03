@@ -18,23 +18,34 @@ namespace IndyBooks.Controllers
          * CREATE
          */
         [HttpGet]
-        public IActionResult CreateBook() => View("AddBook");
+        public IActionResult CreateBook()
+        {
+            return View("AddBook");
+        }
         [HttpPost]
         public IActionResult CreateBook(AddBookViewModel newBook)
         {
-            //TODO: Use ViewModel to build the Author and then the Book; 
-            //      Add to DbSets; SaveChanges
+            //TODO: Build the Author and the Book given the newBook data. Add to DbSets; SaveChanges
 
 
             //Shows the new book using the Search Listing 
             return RedirectToAction("Index");
         }
         /***
-         * READ
-         * TODO: Note the use of a Lambda expression in the method definition        
+         * READ       
          */
         [HttpGet]
-        public IActionResult Index() => View("SearchResults", _db.Books.Include(b => b.Author));
+        public IActionResult Index()
+        {
+            //TODO: Use lambda methods as described by the variable name
+            var allBooksWithAuthorsOrderedbySKU = _db.Books;
+            return View("SearchResults", allBooksWithAuthorsOrderedbySKU);
+        }
+        /***
+         * UPDATE
+         */
+         //TODO: BONUS - Write an method that take a book id, and loads the book data in to the AddBook View
+
         /***
          * DELETE
          */
