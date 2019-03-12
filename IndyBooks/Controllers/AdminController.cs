@@ -74,7 +74,8 @@ namespace IndyBooks.Controllers
         public IActionResult DeleteBook(long id)
         {
             //TODO: Remove the Book associated with the given id number; Save Changes
-
+            _db.Books.Remove(new Book { Id = id });
+            _db.SaveChanges();
 
             return RedirectToAction("Search");
         }
